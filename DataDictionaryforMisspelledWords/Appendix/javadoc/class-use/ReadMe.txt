@@ -1,1 +1,1 @@
-The class-use subdirectory contains .html files, which navigate to the javadoc website.
+The class-use subdirectory contains .html files, which represent locally saved Javadoc-generated documentation.
