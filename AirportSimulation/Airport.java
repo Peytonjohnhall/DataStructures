@@ -93,17 +93,17 @@ public class Airport
     {
         try
         {
-        	// queue for airplanes waiting to land
-        	QueueInterface<Airplane> landingQueue = new LinkedQueue<>();
+            // queue for airplanes waiting to land
+            QueueInterface<Airplane> landingQueue = new LinkedQueue<>();
 
-        	// queue for airplanes waiting to take off
-        	QueueInterface<Airplane> takeoffQueue = new LinkedQueue<>();
+            // queue for airplanes waiting to take off
+            QueueInterface<Airplane> takeoffQueue = new LinkedQueue<>();
 
             for (int currentTime = 0; currentTime <= simulationLength; 
                  currentTime++)
             {
             	// Create an Airplane object
-				Airplane airplane = new Airplane(currentTime);
+		Airplane airplane = new Airplane(currentTime);
 
                 // x is a placeholder for Math.random(). The landing
                 // probability is updated so it is not a fixed number
@@ -165,9 +165,9 @@ public class Airport
                     // landing queue logic implementation:
                     if (!landingQueue.isEmpty()) 
                     {
-						Airplane landingAirplane = landingQueue.dequeue();
-						int landingTime = landingAirplane.getTimeInQueue();
-						int waitTime = currentTime - landingTime;
+			Airplane landingAirplane = landingQueue.dequeue();
+			int landingTime = landingAirplane.getTimeInQueue();
+			int waitTime = currentTime - landingTime;
 
                         if (waitTime > maxLandingQueueWait)
                         {
@@ -184,12 +184,12 @@ public class Airport
                     {
                         // takeoff queue logic implementation
                         if (!takeoffQueue.isEmpty() && 
-                        	!runway.isRunwayOccupied()) 
+                            !runway.isRunwayOccupied()) 
                         {
                             Airplane takeoffAirplane = takeoffQueue.dequeue();
-							int takeoffTime = takeoffAirplane.getTimeInQueue();
-							int waitTime = currentTime - takeoffTime;
-							timeInTakeoffQueue += waitTime;
+			    int takeoffTime = takeoffAirplane.getTimeInQueue();
+			    int waitTime = currentTime - takeoffTime;
+			    timeInTakeoffQueue += waitTime;
                         }
                     }
                 }
