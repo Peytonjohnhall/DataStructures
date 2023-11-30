@@ -1,1 +1,1 @@
-These .html files navigate to the javadoc website.
+These .html files represent locally saved Javadoc-generated documentation.
