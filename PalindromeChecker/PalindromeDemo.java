@@ -7,8 +7,8 @@ public class PalindromeDemo
     public static void main(String[] args) 
     {
         System.out.println("This program will determine if an entered string" +
-        				   " is a palindrome.\nEnter the string you want to" +
-        				   " check for palindrome:"); // aesthetic preference
+                           " is a palindrome.\nEnter the string you want to" +
+                           " check for palindrome:"); // aesthetic preference
         Scanner input = new Scanner(System.in);
         String enteredString = input.nextLine();
         String reversedStringInput = ""; // Stack: last in, first out (LIFO)
