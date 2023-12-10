@@ -14,9 +14,22 @@ import java.util.Random;
 public class SolitaireGame
 {
 	private static final int NUMBER_COUNT = 6; // number count to begin with
-   private static final int MIN_VALUE = 10; // numbers can't be single digit
-   private static final int MAX_VALUE = 99; // numbers can't be triple digit
+	private static final int MIN_VALUE = 10; // numbers can't be single digit
+	private static final int MAX_VALUE = 99; // numbers can't be triple digit
 	private static List<Integer> theNumbers; // store ArrayList of random #'s
+
+	public static void main(String args[])
+	{
+        	theNumbers = new ArrayList<>();
+       		initializeList(theNumbers);
+       		System.out.println("The list is originally: " + theNumbers);
+
+      		while (scanAndRemovePairs(theNumbers))
+		{
+         		System.out.println("The list is now: " + theNumbers);
+		}
+		System.out.println("No more pairs to remove.");
+	} // end main
 
 	/** 
 		Initializes the list with 40 random 2 digit numbers. 
@@ -24,32 +37,33 @@ public class SolitaireGame
 	*/
 	public static void initializeList(List<Integer> theList)
 	{
-      Random m = new Random();
+		Random m = new Random();
 		for (int i = 0; i < NUMBER_COUNT; i++) 
 		{
-         int num = m.nextInt(100);
-         if (num < 10)
-         {
-            i--; // repeat iteration
-         }
-         else 
-         {
-            theList.add(num);
-         }
-      }
+			int num = m.nextInt(100);
+			if (num < 10)
+			{
+				i--; // repeat iteration
+			}
+			else 
+			{
+				theList.add(num);
+			}
+      		}
 	} // end initializeList
 
 	/** Sees whether two numbers are removable.
 		 @param x  The first 2 digit integer value.
 		 @param y  The second 2 digit integer value.
- 		 @return  True if x and y match in the first or second digit. */
+ 		 @return  True if x and y match in the first or second digit. 
+    	*/
 	public static boolean removable(Integer x, Integer y)
 	{
-      int x1 = x / 10; // integer division
-      int x2 = x % 10; // modulo/modulus - returns remainder after division
-      int y1 = y / 10;
-      int y2 = y % 10;
-      return (x1 == y1 || x2 == y2);
+		int x1 = x / 10; // integer division
+      		int x2 = x % 10; // modulo/modulus - returns remainder after division
+      		int y1 = y / 10;
+      		int y2 = y % 10;
+      		return (x1 == y1 || x2 == y2);
 	} // end removable
 
 	/** Scans over the list and removes any pairs of values that are removable.
@@ -58,38 +72,27 @@ public class SolitaireGame
 	public static boolean scanAndRemovePairs(List<Integer> theList)
 	{
 		boolean removed = false; // assume removed is false
-      ListIterator<Integer> iterator = theList.listIterator();
+      		ListIterator<Integer> iterator = theList.listIterator();
 
-      while (iterator.hasNext()) // Scan over each element in the list
-      {
-         int index = iterator.nextIndex(); // Get index of current element
-         Integer current = iterator.next(); // Get current element
-         if (index + 1 < theList.size()) // Check if a next element exists
-         {
-            Integer next = theList.get(index + 1); // Get the next element
-            if (removable(current, next)) // call removable method
-            {
-               iterator.remove();
-               iterator.next(); // Move the iterator to the next element
-               iterator.remove();
-               removed = true; // Set the boolean to indicate pair removal
-               System.out.println("Removed: " + current + " " + next);
-            }
-         }
-      }
-      return removed;
+      		while (iterator.hasNext()) // Scan over each element in the list
+      		{
+         		int index = iterator.nextIndex(); // Get index of current element
+         		Integer current = iterator.next(); // Get current element
+         		if (index + 1 < theList.size()) // Check if a next element exists
+         		{
+            			Integer next = theList.get(index + 1); // Get the next element
+            			if (removable(current, next)) // call removable method
+            			{
+					iterator.remove();
+					iterator.next(); // Move the iterator to the next element
+					iterator.remove();
+					removed = true; // Set the boolean to indicate pair removal
+					System.out.println("Removed: " + current + " " + next);
+            			}
+         		}
+      		}
+      		return removed;
 	} // end scanAndRemovePairs
-
-	public static void main(String args[])
-	{
-        theNumbers = new ArrayList<>();
-       initializeList(theNumbers);
-       System.out.println("The list is originally: " + theNumbers);
-
-      while (scanAndRemovePairs(theNumbers))
-         System.out.println("The list is now: " + theNumbers);
-      System.out.println("No more pairs to remove.");
-	} // end main
 }  //  end SolitaireGame
 
 /*
